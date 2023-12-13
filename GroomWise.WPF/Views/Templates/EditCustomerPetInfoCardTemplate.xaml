@@ -1,0 +1,86 @@
+﻿<UserControl
+    x:Class="GroomWise.Views.Templates.EditCustomerPetInfoCardTemplate"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dialogs="clr-namespace:GroomWise.Views.Dialogs"
+    xmlns:local="clr-namespace:GroomWise.Views.Templates"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:observables="clr-namespace:GroomWise.Application.Observables;assembly=GroomWise.Application"
+    xmlns:russkyc="clr-namespace:org.russkyc.moderncontrols;assembly=Russkyc.ModernControls.WPF"
+    xmlns:wpf="clr-namespace:Material.Icons.WPF;assembly=Material.Icons.WPF"
+    Height="54"
+    HorizontalAlignment="Stretch"
+    d:DataContext="{d:DesignInstance observables:ObservablePet,
+                                     IsDesignTimeCreatable=True}"
+    Background="Transparent"
+    IsTabStop="False"
+    mc:Ignorable="d">
+    <Grid Style="{StaticResource FadeInAnimation}">
+        <Border
+            Padding="5"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Background="{DynamicResource bg-100}"
+            CornerRadius="10" />
+        <Grid HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <russkyc:ModernTextBox
+                Grid.Column="0"
+                Margin="8,0,0,0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Center"
+                CornerRadius="5"
+                Placeholder="Pet Name"
+                Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+            <russkyc:ModernTextBox
+                Grid.Column="1"
+                Width="47"
+                Margin="8,0,0,0"
+                VerticalAlignment="Center"
+                CornerRadius="5"
+                Placeholder="Age"
+                Text="{Binding Age, UpdateSourceTrigger=PropertyChanged}" />
+            <russkyc:ModernTextBox
+                Grid.Column="2"
+                Width="120"
+                Margin="8,0,0,0"
+                VerticalAlignment="Center"
+                CornerRadius="5"
+                Placeholder="Breed"
+                Text="{Binding Breed, UpdateSourceTrigger=PropertyChanged}" />
+            <russkyc:ModernComboBox
+                Grid.Column="3"
+                Width="84"
+                Margin="8,0,0,0"
+                VerticalAlignment="Center"
+                CornerRadius="5"
+                IsEditable="True"
+                Placeholder="Gender"
+                SelectedIndex="0"
+                Text="{Binding Gender, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBoxItem>Male</ComboBoxItem>
+                <ComboBoxItem>Female</ComboBoxItem>
+            </russkyc:ModernComboBox>
+            <russkyc:ModernButton
+                Grid.Column="4"
+                Margin="14"
+                Padding="5"
+                Command="{Binding Path=DataContext.RemoveSelectedCustomerPetCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=dialogs:EditCustomersView}}"
+                CommandParameter="{Binding}"
+                Content="{wpf:MaterialIconExt Kind=TrashCan}"
+                DefaultBackground="Transparent"
+                DefaultForeground="{DynamicResource fg-000}"
+                HoverBackground="{DynamicResource bg-300}"
+                HoverForeground="{DynamicResource fg-000}"
+                PressedBackground="{DynamicResource danger}"
+                PressedForeground="#ffffff" />
+        </Grid>
+    </Grid>
+</UserControl>

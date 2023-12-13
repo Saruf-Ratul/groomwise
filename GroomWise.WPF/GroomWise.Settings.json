@@ -1,0 +1,11 @@
+{
+  "darkMode": true,
+  "colorTheme": "Teal",
+  "version": "0.12.2",
+  "dbConnection": "",
+  "toastCooldown": 5.0,
+  "multiUser": true,
+  "appDataPath": "/",
+  "checkForUpdates" : true,
+  "firstRun": true
+}
